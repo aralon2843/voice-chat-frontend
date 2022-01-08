@@ -7,16 +7,23 @@ export const Form = styled.form`
   border-radius: 10px;
 `;
 
-export const Input = styled.input`
+export const InputWrapper = styled.div`
+  position: relative;
+`;
+
+interface IInput {
+  error: boolean;
+}
+
+export const Input = styled.input<IInput>`
   min-width: 100%;
-  border: 1px solid #7289da;
   padding: 9px 12px;
   background-color: #303339;
   margin: 15px 0;
   border-radius: 10px;
   outline: none;
   color: #ccc;
-
+  border: 1px solid ${({ error }) => (error ? "#dc143c" : "#7289da")}; // dc143c 7289da
   transition: 0.3s ease all;
 
   &::placeholder {
@@ -26,6 +33,15 @@ export const Input = styled.input`
   &:placeholder-shown {
     border-color: #2c2e33;
   }
+`;
+
+export const InputError = styled.p`
+  font-size: 12px;
+  font-weight: 400;
+  position: absolute;
+  bottom: -6px;
+  left: 5px;
+  color: #dc143c;
 `;
 
 export const SubminButton = styled.button`
@@ -40,6 +56,7 @@ export const SubminButton = styled.button`
   justify-content: center;
   color: #fff;
   background-color: #7289da;
+  cursor: pointer;
 `;
 
 export const FormOffer = styled.a`
