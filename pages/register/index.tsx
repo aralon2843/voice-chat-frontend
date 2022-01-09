@@ -4,7 +4,7 @@ import { RegisterWrapper } from './Styles';
 
 export default function RegisterPage() {
   return (
-    <MainContainer>
+    <MainContainer title="Register" pt={0}>
       <RegisterWrapper>
         <Register />
       </RegisterWrapper>

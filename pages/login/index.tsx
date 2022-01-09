@@ -4,7 +4,7 @@ import { LoginWrapper } from './Styles';
 
 export default function LoginPage() {
   return (
-    <MainContainer>
+    <MainContainer title="Login" pt={0}>
       <LoginWrapper>
         <Login />
       </LoginWrapper>

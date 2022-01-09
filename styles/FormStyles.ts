@@ -11,6 +11,7 @@ export const Form = styled.form`
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.darkGrey} inset !important;
+    box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.darkGrey} inset !important;
   }
   input:-webkit-autofill {
     -webkit-text-fill-color: ${({ theme }) =>

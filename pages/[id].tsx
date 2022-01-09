@@ -3,7 +3,7 @@ import Profile from '../components/Profile/Profile';
 
 const ProfilePage: React.FC = (): JSX.Element => {
   return (
-    <MainContainer>
+    <MainContainer title="Profile">
       <Profile />
     </MainContainer>
   );

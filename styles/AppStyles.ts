@@ -10,8 +10,8 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const Content = styled.div`
-  padding-top: 70px;
+export const Content = styled.div<{ pt: number }>`
+  padding-top: ${({ pt }) => pt + 'px'};
 `;
 
 export const FlexContainer = styled.div<{ justify?: string; align?: string }>`
