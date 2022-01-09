@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
+import { ThemeType } from './theme';
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     *, input {
     margin: 0;
     padding: 0;
@@ -10,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    background-color: #2B2D32;
+    background-color: ${({ theme }) => theme.colors.darkGrey};
   }
   ul {
     list-style: none;

@@ -20,7 +20,7 @@ export default function Register(): JSX.Element {
   const {
     handleSubmit,
     register,
-    formState: { errors, isDirty },
+    formState: { errors },
   } = useForm<IRegisterInputs>();
 
   const [passwordShown, setPasswordShown] = useState(false);
@@ -100,7 +100,7 @@ export default function Register(): JSX.Element {
         <SubminButton>Register</SubminButton>
       </Form>
       <FormOffer>
-        Already have account?
+        Already have an account?
         <Link href="/login">
           <a> Login</a>
         </Link>

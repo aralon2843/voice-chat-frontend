@@ -3,8 +3,19 @@ import styled from 'styled-components';
 export const Form = styled.form`
   width: 450px;
   padding: 15px;
-  background-color: #36393f;
+  background-color: ${({ theme }) => theme.colors.grey};
   border-radius: 10px;
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.darkGrey} inset !important;
+  }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: ${({ theme }) =>
+      theme.colors.lightGrey} !important;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -18,20 +29,22 @@ interface IInput {
 export const Input = styled.input<IInput>`
   min-width: 100%;
   padding: 9px 12px;
-  background-color: #303339;
+  background-color: ${({ theme }) => theme.colors.darkGrey};
   margin: 15px 0;
   border-radius: 10px;
   outline: none;
-  color: #ccc;
-  border: 1px solid ${({ error }) => (error ? "#dc143c" : "#7289da")}; // dc143c 7289da
-  transition: 0.3s ease all;
+  color: ${({ theme }) => theme.colors.lightGrey};
+  border: 1px solid
+    ${({ error, theme }) => (error ? theme.colors.red : theme.colors.lightBlue)}; // dc143c 7289da
+  transition: 0.3s ease border-color;
 
   &::placeholder {
     font-size: 12px;
   }
 
   &:placeholder-shown {
-    border-color: #2c2e33;
+    border-color: ${({ error, theme }) =>
+      error ? theme.colors.red : theme.colors.darkGrey};
   }
 `;
 
@@ -41,7 +54,7 @@ export const InputError = styled.p`
   position: absolute;
   bottom: -6px;
   left: 5px;
-  color: #dc143c;
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 export const SubminButton = styled.button`
@@ -54,16 +67,16 @@ export const SubminButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  background-color: #7289da;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.semiDarkBlue};
   cursor: pointer;
 `;
 
 export const FormOffer = styled.a`
   margin-top: 15px;
-  color: #ccc;
+  color: ${({ theme }) => theme.colors.lightGrey};
   font-size: 14px;
   a {
-    color: #7289da;
+    color: ${({ theme }) => theme.colors.lightBlue};
   }
 `;
