@@ -8,7 +8,9 @@ import {
 } from '../../styles/FormStyles';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { authAPI } from '../../services/AuthService';
+import Router from 'next/router';
 
 interface IRegisterInputs {
   email: string;
@@ -17,6 +19,9 @@ interface IRegisterInputs {
 }
 
 export default function Register(): JSX.Element {
+  const [registerRequest, { isError, isLoading, isSuccess }] =
+    authAPI.useRegisterMutation();
+
   const {
     handleSubmit,
     register,
@@ -25,7 +30,9 @@ export default function Register(): JSX.Element {
 
   const [passwordShown, setPasswordShown] = useState(false);
 
-  const onSubmit: SubmitHandler<IRegisterInputs> = (data): void => {};
+  const onSubmit: SubmitHandler<IRegisterInputs> = (data): void => {
+    registerRequest(data);
+  };
 
   const togglePasswordVisibility = (): void => {
     setPasswordShown(passwordShown ? false : true);
@@ -33,6 +40,10 @@ export default function Register(): JSX.Element {
 
   const emailRegex =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  useEffect(() => {
+    isSuccess && Router.push('/login');
+  }, [isSuccess]);
 
   return (
     <>

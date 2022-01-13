@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Form,
   Input,
@@ -9,6 +9,8 @@ import {
 } from '../../styles/FormStyles';
 import Link from 'next/link';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { authAPI } from '../../services/AuthService';
+import Router from 'next/router';
 
 interface ILoginInputs {
   username: string;
@@ -16,6 +18,9 @@ interface ILoginInputs {
 }
 
 const Login: React.FC = (): JSX.Element => {
+  const [loginRequest, { isLoading, isError, isSuccess }] =
+    authAPI.useLoginMutation();
+
   const {
     handleSubmit,
     register,
@@ -24,11 +29,18 @@ const Login: React.FC = (): JSX.Element => {
 
   const [passwordShown, setPasswordShown] = useState(false);
 
-  const onSubmit: SubmitHandler<ILoginInputs> = (data): void => {};
+  const onSubmit: SubmitHandler<ILoginInputs> = (data): void => {
+    loginRequest(data);
+  };
 
   const togglePasswordVisibility = (): void => {
     setPasswordShown(passwordShown ? false : true);
   };
+
+  useEffect(() => {
+    isSuccess && Router.push('/username');
+  }, [isSuccess]);
+
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>

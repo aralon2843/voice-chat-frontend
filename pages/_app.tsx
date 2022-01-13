@@ -1,15 +1,21 @@
 import { AppProps } from 'next/app';
 import React from 'react';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import { setupStore } from '../store/store';
 import GlobalStyles from '../styles/globalStyles';
 import theme from '../styles/theme';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }): JSX.Element => {
+  const store = setupStore();
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
   );
 };
 

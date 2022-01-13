@@ -18,8 +18,7 @@ export const HeaderInner = styled.div`
 `;
 
 export const Logo = styled.div`
-  background: url('https://sun9-7.userapi.com/impg/2oO4DpRejgSfUWmlShaMV4zBNtXb9-naUy0j5A/JvW94Gbo770.jpg?size=736x736&quality=96&sign=ce567261ff16e2be8fbb43390990797e&type=album')
-    no-repeat;
+  background-color: ${({ theme }) => theme.colors.semiDarkBlue};
   width: 50px;
   height: 50px;
   border-radius: 50%;
