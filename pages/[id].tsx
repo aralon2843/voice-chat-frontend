@@ -1,17 +1,31 @@
-import Router from 'next/router';
+import { GetServerSideProps } from 'next';
+import Router, { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { MainContainer } from '../components/MainContainer/MainContainer';
 import Profile from '../components/Profile/Profile';
+import { IUser } from '../models/IUser';
+import { userAPI } from '../services/userService';
 
-const ProfilePage: React.FC = (): JSX.Element => {
+interface IProfilePage {
+  user: IUser;
+}
+
+const ProfilePage: React.FC<IProfilePage> = ({}): JSX.Element => {
   const ISSERVER = typeof window === 'undefined';
   const [accessToken, setAccessToken] = useState(
     !ISSERVER && localStorage.getItem('access_token')
   );
 
-  useEffect(() => {
-    !accessToken && Router.push('/login');
-  }, [accessToken]);
+  const router = useRouter();
+
+  const {
+    data: user,
+    isError,
+    isLoading,
+    isSuccess,
+  } = userAPI.useGetUserQuery(router.query.id); //idk how handle this 
+
+  console.log(user);
 
   const logoutUser = (): void => {
     if (!ISSERVER) {
@@ -20,10 +34,14 @@ const ProfilePage: React.FC = (): JSX.Element => {
     }
     setAccessToken('');
   };
-  //localStorage.removeItem('currentUserId');
+
+  useEffect(() => {
+    !accessToken && Router.push('/login');
+  }, [accessToken, router.isReady]);
+
   return (
     <MainContainer title="Profile" logout={logoutUser}>
-      <Profile />
+      <Profile user={user} />
     </MainContainer>
   );
 };

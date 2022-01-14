@@ -3,19 +3,23 @@ import {
   configureStore,
   getDefaultMiddleware,
 } from '@reduxjs/toolkit';
-import { authAPI } from '../services/AuthService';
+import { authAPI } from '../services/authService';
+import { userAPI } from '../services/userService';
 import userReducer from './reducers/userSlice';
 
 const rootReducer = combineReducers({
   userReducer,
   [authAPI.reducerPath]: authAPI.reducer,
+  [userAPI.reducerPath]: userAPI.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(authAPI.middleware),
+      getDefaultMiddleware()
+        .concat(authAPI.middleware)
+        .concat(userAPI.middleware),
     devTools: true,
   });
 };

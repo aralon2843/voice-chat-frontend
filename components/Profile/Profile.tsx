@@ -1,3 +1,4 @@
+import { IUser } from '../../models/IUser';
 import { Container } from '../../styles/AppStyles';
 import Post from '../Post/Post';
 import {
@@ -55,7 +56,11 @@ const posts = [
   },
 ];
 
-const Profile: React.FC = (): JSX.Element => {
+interface IProfile {
+  user: IUser | undefined;
+}
+
+const Profile: React.FC<IProfile> = ({ user }): JSX.Element => {
   return (
     <Container>
       <ProfileWrapper>
@@ -66,17 +71,17 @@ const Profile: React.FC = (): JSX.Element => {
             height={100}
           />
           <Fullname>Max Tereshchenko</Fullname>
-          <Nickname>@aralon2843</Nickname>
-          <Location>Luhansk</Location>
+          <Nickname>@{user?.username}</Nickname>
+          <Location>{user?.city}</Location>
           <ActivityDescr>
             <ActivityDescrItem>
               Tweets <span>127</span>
             </ActivityDescrItem>
             <ActivityDescrItem>
-              Followers <span>782</span>
+              Followers <span>{user?.followers.length}</span>
             </ActivityDescrItem>
             <ActivityDescrItem>
-              Following <span>23</span>
+              Following<span>{user?.followings.length}</span>
             </ActivityDescrItem>
           </ActivityDescr>
         </ProfileInfo>

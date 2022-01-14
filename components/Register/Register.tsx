@@ -9,7 +9,7 @@ import {
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { authAPI } from '../../services/AuthService';
+import { authAPI } from '../../services/authService';
 import Router from 'next/router';
 
 interface IRegisterInputs {
