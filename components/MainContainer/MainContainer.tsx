@@ -7,12 +7,14 @@ interface IMainContainer {
   children: React.ReactNode;
   title: string;
   pt?: number;
+  logout: () => void;
 }
 
 export const MainContainer: React.FC<IMainContainer> = ({
   children,
   title,
   pt,
+  logout,
 }): JSX.Element => {
   return (
     <>
@@ -20,7 +22,7 @@ export const MainContainer: React.FC<IMainContainer> = ({
         <title>{title}</title>
       </Head>
       <Wrapper>
-        <Header />
+        <Header logout={logout} />
         <Container>
           <Content pt={pt === 0 ? pt : 70}>{children}</Content>
         </Container>

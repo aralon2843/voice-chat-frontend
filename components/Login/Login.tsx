@@ -18,7 +18,7 @@ interface ILoginInputs {
 }
 
 const Login: React.FC = (): JSX.Element => {
-  const [loginRequest, { isLoading, isError, isSuccess }] =
+  const [loginRequest, { isLoading, isError, isSuccess, data }] =
     authAPI.useLoginMutation();
 
   const {
@@ -38,8 +38,13 @@ const Login: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    isSuccess && Router.push('/username');
-  }, [isSuccess]);
+    console.log(data)
+    if (isSuccess && data?.access_token) {
+      localStorage.setItem('access_token', data.access_token);
+      localStorage.setItem('currentUserId', data.id);
+      Router.push(`${data.id}`);
+    }
+  }, [isSuccess, data]);
 
   return (
     <>

@@ -2,13 +2,17 @@ import React from 'react';
 import { Container } from '../../styles/AppStyles';
 import { ExitButton, HeaderInner, HeaderWrapper, Logo } from './Header.styles';
 
-export const Header: React.FC = (): JSX.Element => {
+interface IHeader {
+  logout: () => void;
+}
+
+export const Header: React.FC<IHeader> = ({ logout }): JSX.Element => {
   return (
     <HeaderWrapper>
       <Container>
         <HeaderInner>
           <Logo />
-          <ExitButton>Exit</ExitButton>
+          <ExitButton onClick={logout}>Exit</ExitButton>
         </HeaderInner>
       </Container>
     </HeaderWrapper>
