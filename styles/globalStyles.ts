@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     color: inherit;
   }
   
-  form, input {
+  form, input, textarea {
     font-family: inherit;
     font-size: inherit;
   }

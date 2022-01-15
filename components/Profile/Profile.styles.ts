@@ -31,16 +31,9 @@ export const Avatar = styled.img<{ width: number; height: number }>`
   margin-bottom: 10px;
 `;
 
-export const Fullname = styled.p<{ mr?: number }>`
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: 500;
-  margin-bottom: 10px;
-  margin-right: ${({ mr }) => (mr ? mr + 'px' : '0')};
-`;
-
 export const Nickname = styled.p`
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 `;
 
@@ -49,14 +42,14 @@ export const Location = styled.p`
 `;
 
 export const ActivityDescr = styled.ul`
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 export const ActivityDescrItem = styled.li`
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
   align-items: center;
 
   &:last-child {
@@ -74,3 +67,32 @@ export const PostsWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grey};
   border-radius: 15px;
 `;
+
+export const PostTextAreaWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+`;
+
+export const PostTextArea = styled.textarea`
+  display: block;
+  width: 80%;
+  border: none;
+  outline: none;
+  resize: none;
+  min-height: 70px;
+  height: 100%;
+  max-height: 150px;
+  background-color: ${({ theme }) => theme.colors.semiDarkGrey};
+  border-radius: 0px 15px 15px 15px;
+  padding: 10px;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const SendPostIcon = styled.div`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+`;
+

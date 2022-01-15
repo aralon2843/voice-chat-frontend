@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PostWrapper = styled.div`
   display: flex;
+  align-items: flex-start;
   margin-bottom: 25px;
   &:last-child {
     margin-bottom: 0px;
@@ -13,7 +14,7 @@ export const PostInner = styled.div`
   border-radius: 0px 15px 15px 15px;
   color: ${({ theme }) => theme.colors.lightGrey};
   padding: 10px 15px;
-
+  position: relative;
   width: 100%;
 `;
 export const PostHeader = styled.div`
@@ -22,6 +23,7 @@ export const PostHeader = styled.div`
 `;
 export const Date = styled.span`
   font-size: 12px;
+  padding-right: 8px;
 `;
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.white};
@@ -38,4 +40,17 @@ export const CommentsCount = styled.div`
 export const LikesCount = styled.div`
   margin-left: 5px;
   font-weight: 500;
+`;
+
+export const DeleteButton = styled.button`
+  width: 5px;
+  height: 5px;
+  color: ${({ theme }) => theme.colors.red};
+  outline: none;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  background-color: inherit;
+  cursor: pointer;
 `;

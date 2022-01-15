@@ -1,9 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { FlexContainer } from '../../styles/AppStyles';
-import { Avatar, Fullname, Nickname } from '../Profile/Profile.styles';
+import { Avatar, Nickname } from '../Profile/Profile.styles';
 import {
   CommentsCount,
   Date,
+  DeleteButton,
   LikesCount,
   PostFooter,
   PostHeader,
@@ -15,34 +17,54 @@ const heartIcon = require('../../public/heart.svg');
 const commentIcon = require('../../public/comment.svg');
 
 interface IPost {
-  avatar: string;
-  fullname: string;
-  nickname: string;
+  id: string;
+  avatar: string | null | undefined;
+  username: string;
   date: string;
   text: string;
   commentsCount: number;
   likesCount: number;
+  userId: string | undefined;
+  onDeletePostClickHandler: (postId: string) => void;
 }
 
 const Post: React.FC<IPost> = ({
+  id,
   avatar,
-  fullname,
-  nickname,
+  username,
   date,
   text,
   commentsCount,
   likesCount,
+  userId,
+  onDeletePostClickHandler,
 }): JSX.Element => {
   return (
     <PostWrapper>
-      <Avatar src={avatar} width={40} height={40} />
+      <Link href={`/${userId}`}>
+        <a>
+          <Avatar
+            src={
+              avatar ??
+              'https://sun9-84.userapi.com/impg/nD4pTquyGl-R1hJ6wk42s7VvJCiLXAAn1vKRGg/yXQ8gIhkn4I.jpg?size=1005x986&quality=96&sign=445f708a57cd4c088e0127e6e3523fb7&type=album'
+            }
+            width={40}
+            height={40}
+          />
+        </a>
+      </Link>
       <PostInner>
         <PostHeader>
-          <FlexContainer align="center">
-            <Fullname mr={8}>{fullname}</Fullname>
-            <Nickname>{nickname}</Nickname>
-          </FlexContainer>
-          <Date>{date} hours ago</Date>
+          <Link href={`/${userId}`}>
+            <a>
+              <Nickname>@{username}</Nickname>
+            </a>
+          </Link>
+
+          <Date>{date}</Date>
+          <DeleteButton onClick={() => onDeletePostClickHandler(id)}>
+            x
+          </DeleteButton>
         </PostHeader>
 
         <Text>{text}</Text>
