@@ -3,7 +3,7 @@ import { Container } from '../../styles/AppStyles';
 import { ExitButton, HeaderInner, HeaderWrapper, Logo } from './Header.styles';
 
 interface IHeader {
-  logout: () => void;
+  logout?: () => void;
 }
 
 export const Header: React.FC<IHeader> = ({ logout }): JSX.Element => {

@@ -45,7 +45,7 @@ export const LikesCount = styled.div`
 export const DeleteButton = styled.button`
   width: 5px;
   height: 5px;
-  color: ${({ theme }) => theme.colors.red};
+  color: ${({ theme }) => theme.colors.darkGrey};
   outline: none;
   border: none;
   position: absolute;
@@ -53,4 +53,6 @@ export const DeleteButton = styled.button`
   top: 0px;
   background-color: inherit;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
 `;

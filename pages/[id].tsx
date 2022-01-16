@@ -57,7 +57,12 @@ const ProfilePage: React.FC<IProfilePage> = ({}): JSX.Element => {
   }, [accessToken, router.isReady]);
 
   return (
-    <MainContainer title="Profile" logout={logoutUser}>
+    <MainContainer
+      title="Profile"
+      logout={logoutUser}
+      isSidebarHidden={false}
+      currentUserId={currentUserId}
+    >
       <Profile
         currentUserId={currentUserId}
         user={user}

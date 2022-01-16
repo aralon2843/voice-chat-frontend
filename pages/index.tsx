@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
-import { useAppSelector } from '../hooks/redux';
 
 const Home: React.FC = (): JSX.Element => {
   useEffect(() => {
@@ -14,25 +12,7 @@ const Home: React.FC = (): JSX.Element => {
     }
   }, []);
 
-  return (
-    <div>
-      <p style={{ textAlign: 'center', fontSize: '30px' }}>
-        <Link href="/login">
-          <a>Login</a>
-        </Link>
-      </p>
-      <p style={{ textAlign: 'center', fontSize: '30px' }}>
-        <Link href="/register">
-          <a>Register</a>
-        </Link>
-      </p>
-      <p style={{ textAlign: 'center', fontSize: '30px' }}>
-        <Link href="/1">
-          <a>Profile</a>
-        </Link>
-      </p>
-    </div>
-  );
+  return <></>;
 };
 
 export default Home;

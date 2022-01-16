@@ -4,7 +4,7 @@ import { LoginWrapper } from './Styles';
 
 export default function LoginPage() {
   return (
-    <MainContainer title="Login" pt={0}>
+    <MainContainer title="Login" pt={0} isSidebarHidden={true}>
       <LoginWrapper>
         <Login />
       </LoginWrapper>
