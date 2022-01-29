@@ -22,6 +22,7 @@ import { postAPI } from "../../services/postService";
 
 const Profile: React.FC = (): JSX.Element => {
   const currentUser = useAppSelector((state) => state.userReducer.currentUser);
+  const me = useAppSelector((state) => state.userReducer.me);
   const params = useParams();
   const dispatch = useAppDispatch();
 
@@ -61,7 +62,7 @@ const Profile: React.FC = (): JSX.Element => {
 
   const onSendPostClickHandle = (): void => {
     if (newPostBody.trim() !== "") {
-      postRequest({ authorId: currentUser._id, body: newPostBody });
+      postRequest({ authorId: me._id, body: newPostBody });
       setNewPostBody("");
     }
   };
@@ -95,21 +96,25 @@ const Profile: React.FC = (): JSX.Element => {
         </ProfileInfo>
         <PostsWrapper>
           <PostTextAreaWrapper>
-            <Avatar
-              src="https://sun9-84.userapi.com/impg/nD4pTquyGl-R1hJ6wk42s7VvJCiLXAAn1vKRGg/yXQ8gIhkn4I.jpg?size=1005x986&quality=96&sign=445f708a57cd4c088e0127e6e3523fb7&type=album"
-              width={60}
-              height={60}
-            />
-            <PostTextArea
-              placeholder="What's new?"
-              onChange={(e) => onTextareaChangeHandle(e)}
-              value={newPostBody}
-            />
-            <SendPostIcon
-              src={sendIcon}
-              onClick={onSendPostClickHandle}
-              alt="send"
-            ></SendPostIcon>
+            {me._id === currentUser._id && (
+              <>
+                <Avatar
+                  src="https://sun9-84.userapi.com/impg/nD4pTquyGl-R1hJ6wk42s7VvJCiLXAAn1vKRGg/yXQ8gIhkn4I.jpg?size=1005x986&quality=96&sign=445f708a57cd4c088e0127e6e3523fb7&type=album"
+                  width={60}
+                  height={60}
+                />
+                <PostTextArea
+                  placeholder="What's new?"
+                  onChange={(e) => onTextareaChangeHandle(e)}
+                  value={newPostBody}
+                />
+                <SendPostIcon
+                  src={sendIcon}
+                  onClick={onSendPostClickHandle}
+                  alt="send"
+                ></SendPostIcon>
+              </>
+            )}
           </PostTextAreaWrapper>
           {posts &&
             [...posts]

@@ -11,3 +11,13 @@ export const fetchUser = (id: string) => async (dispatch: AppDispatch) => {
     dispatch(userSlice.actions.userFetchingError("Something went wrong"));
   }
 };
+
+export const fetchMe = (id: string) => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(userSlice.actions.meFetching());
+    const user = await getUser(id);
+    dispatch(userSlice.actions.meFetchingSuccess(user));
+  } catch (e) {
+    dispatch(userSlice.actions.meFetchingError("Something went wrong"));
+  }
+};

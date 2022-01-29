@@ -42,7 +42,7 @@ const Post: React.FC<IPost> = ({
 }): JSX.Element => {
   return (
     <PostWrapper>
-      <Link to={`/${userId}`}>
+      <Link to={`/user/${userId}`}>
         <Avatar
           src={
             "https://sun9-84.userapi.com/impg/nD4pTquyGl-R1hJ6wk42s7VvJCiLXAAn1vKRGg/yXQ8gIhkn4I.jpg?size=1005x986&quality=96&sign=445f708a57cd4c088e0127e6e3523fb7&type=album"
@@ -53,7 +53,7 @@ const Post: React.FC<IPost> = ({
       </Link>
       <PostInner>
         <PostHeader>
-          <Link to={`/${userId}`}>
+          <Link to={`/user/${username}`}>
             <Username>@{username}</Username>
           </Link>
 

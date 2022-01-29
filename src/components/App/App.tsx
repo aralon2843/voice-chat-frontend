@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/redux";
-import { fetchUser } from "../../store/actionCreators/userActionCreators";
+import { fetchMe } from "../../store/actionCreators/userActionCreators";
 
 const App: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
@@ -10,9 +10,9 @@ const App: React.FC = (): JSX.Element => {
     if (!localStorage.getItem("access_token")) {
       navigate("/login");
     } else {
-      const currentUserId = localStorage.getItem("currentUserId");
-      currentUserId && dispatch(fetchUser(currentUserId));
-      navigate(`/user/${currentUserId}`);
+      const meId = localStorage.getItem("currentUserId");
+      meId && dispatch(fetchMe(meId));
+      navigate(`/user/${meId}`);
     }
   }, []);
 

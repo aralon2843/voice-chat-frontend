@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const ProfileWrapper = styled.div`
+  flex: 1 1 80%;
   display: flex;
   justify-content: center;
-  padding: 0px 10px;
   margin-top: 20px;
   align-items: flex-start;
   @media (max-width: 768px) {
@@ -13,7 +13,7 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileInfo = styled.div`
-  flex: 0 1 300px;
+  flex: 1 1 35%;
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.grey};
   border-radius: 15px;
@@ -62,7 +62,7 @@ export const ActivityDescrItem = styled.li`
   }
 `;
 export const PostsWrapper = styled.div`
-  flex: 0 1 700px;
+  flex: 1 1 65%;
   padding: 20px 10px;
   background-color: ${({ theme }) => theme.colors.grey};
   border-radius: 15px;

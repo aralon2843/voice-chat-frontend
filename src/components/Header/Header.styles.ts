@@ -44,4 +44,5 @@ export const GreetingButton = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.semiLightGrey};
   border-radius: 10px;
   cursor: pointer;
+  margin-right: 20px;
 `;

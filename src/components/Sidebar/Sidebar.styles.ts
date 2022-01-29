@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SidebarWrapper = styled.div`
-  flex: 1 1 20%;
-  max-width: 400px;
+  flex: 0 1 20%;
   min-height: 350px;
   background-color: ${({ theme }) => theme.colors.grey};
-  margin-top: 90px;
-  margin-right: 15px;
+  margin-top: 20px;
+  margin-right: 20px;
   border-radius: 15px;
   padding-left: 25px;
   padding-top: 10px;

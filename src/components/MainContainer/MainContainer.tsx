@@ -17,10 +17,12 @@ const MainContainer: React.FC<IMainContainer> = ({
     <Wrapper>
       <Header />
       <Container>
-        <FlexContainer justify="center" align="flex-start">
-          {!isSidebarHidden && <Sidebar />}
-          <Content pt={pt === 0 ? pt : 70}>{children}</Content>
-        </FlexContainer>
+        <Content pt={pt === 0 ? pt : 70}>
+          <FlexContainer justify="center" align="flex-start">
+            {!isSidebarHidden && <Sidebar />}
+            {children}
+          </FlexContainer>
+        </Content>
       </Container>
     </Wrapper>
   );

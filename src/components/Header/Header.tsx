@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import { Container } from "../App/App.styles";
-import { ExitButton, GreetingButton, HeaderInner, HeaderWrapper, Logo } from "./Header.styles";
+import {
+  ExitButton,
+  GreetingButton,
+  HeaderInner,
+  HeaderWrapper,
+  Logo,
+} from "./Header.styles";
 
 interface IHeader {
   logout?: () => void;
@@ -26,15 +32,17 @@ export const Header: React.FC<IHeader> = ({ logout }): JSX.Element => {
     }
   }, [accessToken]);
 
-  const username = useAppSelector(state => state.userReducer.currentUser.username)
+  const username = useAppSelector((state) => state.userReducer.me.username);
 
   return (
     <HeaderWrapper>
       <Container>
         <HeaderInner>
           <Logo />
-          {/* <ExitButton onClick={logoutUser}>Exit</ExitButton> */}
-          <GreetingButton>Hello, {username}!</GreetingButton>
+          <div>
+            <GreetingButton>Hello, {username}!</GreetingButton>
+            <ExitButton onClick={logoutUser}>Exit</ExitButton>
+          </div>
         </HeaderInner>
       </Container>
     </HeaderWrapper>
