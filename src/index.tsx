@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import App from "./components/App/App";
+import Explore from "./components/Explore/Explore";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
@@ -24,6 +25,7 @@ ReactDOM.render(
             <Route path="/user/:id" element={<Profile />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="explore" element={<Explore />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

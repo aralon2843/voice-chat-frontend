@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../hooks/redux";
+import { fetchMe } from "../../store/actionCreators/userActionCreators";
 import { Container } from "../App/App.styles";
 import {
   SidebarMenuList,
@@ -7,14 +9,20 @@ import {
 } from "./Sidebar.styles";
 
 const Sidebar: React.FC = (): JSX.Element => {
-  const currentUserId = localStorage.getItem("currentUserId");
+  const meId = localStorage.getItem("currentUserId");
+
+  const dispatch = useAppDispatch();
+
+  const onProfileClickHandler = () => {
+    meId && dispatch(fetchMe(meId));
+  };
 
   return (
     <SidebarWrapper>
       <Container>
         <SidebarMenuList>
-          <SidebarMenuListItem>
-            <Link to={`/user/${currentUserId}`}>Profile</Link>
+          <SidebarMenuListItem onClick={onProfileClickHandler}>
+            <Link to={`/user/${meId}`}>Profile</Link>
           </SidebarMenuListItem>
           <SidebarMenuListItem>
             <Link to={"/feed"}>Feed</Link>

@@ -14,7 +14,7 @@ const App: React.FC = (): JSX.Element => {
       meId && dispatch(fetchMe(meId));
       navigate(`/user/${meId}`);
     }
-  }, []);
+  }, [navigate]);
 
   return <h1>APP</h1>;
 };

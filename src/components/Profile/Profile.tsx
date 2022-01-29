@@ -23,6 +23,9 @@ import { postAPI } from "../../services/postService";
 const Profile: React.FC = (): JSX.Element => {
   const currentUser = useAppSelector((state) => state.userReducer.currentUser);
   const me = useAppSelector((state) => state.userReducer.me);
+
+  const isMe = me._id === currentUser._id;
+
   const params = useParams();
   const dispatch = useAppDispatch();
 
@@ -80,23 +83,31 @@ const Profile: React.FC = (): JSX.Element => {
             width={100}
             height={100}
           />
-          <Username>@{currentUser.username}</Username>
+          <Username>@{isMe ? me.username : currentUser.username}</Username>
           <Location>Luhansk</Location>
           <ActivityDescr>
             <ActivityDescrItem>
               Posts <span>{posts?.length}</span>
             </ActivityDescrItem>
             <ActivityDescrItem>
-              Followers <span>{currentUser?.followers?.length}</span>
+              Followers{" "}
+              <span>
+                {isMe ? me?.followers?.length : currentUser?.followers?.length}
+              </span>
             </ActivityDescrItem>
             <ActivityDescrItem>
-              Following<span>{currentUser?.followings?.length}</span>
+              Following
+              <span>
+                {isMe
+                  ? me?.followings?.length
+                  : currentUser?.followings?.length}
+              </span>
             </ActivityDescrItem>
           </ActivityDescr>
         </ProfileInfo>
         <PostsWrapper>
           <PostTextAreaWrapper>
-            {me._id === currentUser._id && (
+            {isMe && (
               <>
                 <Avatar
                   src="https://sun9-84.userapi.com/impg/nD4pTquyGl-R1hJ6wk42s7VvJCiLXAAn1vKRGg/yXQ8gIhkn4I.jpg?size=1005x986&quality=96&sign=445f708a57cd4c088e0127e6e3523fb7&type=album"
