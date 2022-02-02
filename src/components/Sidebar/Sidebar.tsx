@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { fetchMe } from "../../store/actionCreators/userActionCreators";
 import { Container } from "../App/App.styles";
 import {
@@ -9,7 +9,7 @@ import {
 } from "./Sidebar.styles";
 
 const Sidebar: React.FC = (): JSX.Element => {
-  const meId = localStorage.getItem("currentUserId");
+  const meId = useAppSelector((state) => state.userReducer.me._id);
 
   const dispatch = useAppDispatch();
 

@@ -25,14 +25,14 @@ export const Header: React.FC<IHeader> = ({ logout }): JSX.Element => {
     setAccessToken(null);
   };
 
+  const username = useAppSelector((state) => state.userReducer.me.username);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!accessToken) {
       navigate("/");
     }
-  }, [accessToken]);
-
-  const username = useAppSelector((state) => state.userReducer.me.username);
+  }, [accessToken, username]);
 
   return (
     <HeaderWrapper>

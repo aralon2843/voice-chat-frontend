@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../models/IUser";
 
+const meJSON = localStorage.getItem("user");
+const me = meJSON && JSON.parse(meJSON);
 interface UserState {
   me: IUser;
   currentUser: IUser;
@@ -9,7 +11,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  me: {} as IUser,
+  me,
   currentUser: {} as IUser,
   isLoading: false,
   error: "",

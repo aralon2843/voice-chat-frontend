@@ -24,10 +24,10 @@ const Profile: React.FC = (): JSX.Element => {
   const currentUser = useAppSelector((state) => state.userReducer.currentUser);
   const me = useAppSelector((state) => state.userReducer.me);
 
-  const isMe = me._id === currentUser._id;
-
   const params = useParams();
   const dispatch = useAppDispatch();
+
+  const isMe = me._id === currentUser._id;
 
   const {
     data: posts,
@@ -132,6 +132,7 @@ const Profile: React.FC = (): JSX.Element => {
               .reverse()
               .map((post) => (
                 <Post
+                  isMyPost={post.authorId === me._id}
                   key={post._id}
                   id={post._id}
                   avatar={currentUser?.profilePicture}
@@ -140,7 +141,7 @@ const Profile: React.FC = (): JSX.Element => {
                   text={post.body}
                   commentsCount={post.comments.length}
                   likesCount={post.likes.length}
-                  userId={currentUser?._id}
+                  userId={post.authorId}
                   onDeletePostClickHandler={onDeletePostClickHandler}
                 />
               ))}

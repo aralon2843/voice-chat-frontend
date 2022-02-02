@@ -7,14 +7,16 @@ const App: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (!localStorage.getItem("access_token")) {
-      navigate("/login");
+    const isUserLoggedIn = localStorage.getItem("access_token");
+    if (isUserLoggedIn) {
+      const user = localStorage.getItem("user");
+      const userId = user && JSON.parse(user)._id;
+      dispatch(fetchMe(userId));
+      navigate(`user/${userId}`);
     } else {
-      const meId = localStorage.getItem("currentUserId");
-      meId && dispatch(fetchMe(meId));
-      navigate(`/user/${meId}`);
+      navigate("/login");
     }
-  }, [navigate]);
+  }, []);
 
   return <h1>APP</h1>;
 };

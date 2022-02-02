@@ -18,6 +18,7 @@ import heartIcon from "../../assets/icons/heart.svg";
 import commentIcon from "../../assets/icons/comment.svg";
 
 interface IPost {
+  isMyPost: boolean;
   id: string;
   avatar: string | null;
   username: string;
@@ -30,6 +31,7 @@ interface IPost {
 }
 
 const Post: React.FC<IPost> = ({
+  isMyPost,
   id,
   avatar,
   username,
@@ -58,9 +60,11 @@ const Post: React.FC<IPost> = ({
           </Link>
 
           <Date>{date}</Date>
-          <DeleteButton onClick={() => onDeletePostClickHandler(id)}>
-            x
-          </DeleteButton>
+          {isMyPost && (
+            <DeleteButton onClick={() => onDeletePostClickHandler(id)}>
+              x
+            </DeleteButton>
+          )}
         </PostHeader>
 
         <Text>{text}</Text>

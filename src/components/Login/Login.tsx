@@ -11,6 +11,8 @@ import {
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { authAPI } from "../../services/authService";
+import { useAppDispatch } from "../../hooks/redux";
+import { fetchMe } from "../../store/actionCreators/userActionCreators";
 
 interface ILoginInputs {
   username: string;
@@ -38,15 +40,15 @@ const Login: React.FC = (): JSX.Element => {
   };
 
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    console.log(data);
     if (isSuccess && data?.access_token) {
       localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("currentUserId", data.id);
-      navigate(`/user/${data.id}`);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      dispatch(fetchMe(data.user._id));
+      navigate(`/user/${data.user._id}`);
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, data, navigate]);
 
   return (
     <FormWrapper>

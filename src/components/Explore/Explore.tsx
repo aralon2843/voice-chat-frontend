@@ -18,9 +18,11 @@ const Explore: React.FC = (): JSX.Element => {
   const [exploreId, setExploreId] = useState<string>("");
   const dispatch = useAppDispatch();
 
-  const exploredUser = useAppSelector(
-    (state) => state.exploreReducer.exploreUser
-  );
+  const {
+    exploreUser: exploredUser,
+    isLoading,
+    error,
+  } = useAppSelector((state) => state.exploreReducer);
 
   const onInputChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setExploreId(e.target.value);
@@ -28,7 +30,7 @@ const Explore: React.FC = (): JSX.Element => {
 
   const onButtonClickHandler = (): void => {
     setExploreId("");
-    dispatch(exploreUser(exploreId));
+    exploreId.trim() !== "" && dispatch(exploreUser(exploreId));
   };
 
   return (
@@ -42,30 +44,34 @@ const Explore: React.FC = (): JSX.Element => {
           />
           <ExploreButton onClick={onButtonClickHandler}>Explore</ExploreButton>
         </FlexContainer>
-        {Object.keys(exploredUser).length > 0 && (
-          <ProfileInfo>
-            <Link to={`/user/${exploredUser._id}`}>
-              <Avatar
-                src="https://sun9-84.userapi.com/impg/nD4pTquyGl-R1hJ6wk42s7VvJCiLXAAn1vKRGg/yXQ8gIhkn4I.jpg?size=1005x986&quality=96&sign=445f708a57cd4c088e0127e6e3523fb7&type=album"
-                width={100}
-                height={100}
-              />
-            </Link>
-            <Link to={`/user/${exploredUser._id}`}>
-              <Username>@{exploredUser.username}</Username>
-            </Link>
-            <Location>Luhansk</Location>
-            <ActivityDescr>
-              <ActivityDescrItem>
-                Followers
-                <span>{exploredUser.followers?.length}</span>
-              </ActivityDescrItem>
-              <ActivityDescrItem>
-                Following
-                <span>{exploredUser.followings?.length}</span>
-              </ActivityDescrItem>
-            </ActivityDescr>
-          </ProfileInfo>
+        {error ? (
+          <h2>{error}</h2>
+        ) : (
+          Object.keys(exploredUser).length > 0 && (
+            <ProfileInfo>
+              <Link to={`/user/${exploredUser._id}`}>
+                <Avatar
+                  src="https://sun9-84.userapi.com/impg/nD4pTquyGl-R1hJ6wk42s7VvJCiLXAAn1vKRGg/yXQ8gIhkn4I.jpg?size=1005x986&quality=96&sign=445f708a57cd4c088e0127e6e3523fb7&type=album"
+                  width={100}
+                  height={100}
+                />
+              </Link>
+              <Link to={`/user/${exploredUser._id}`}>
+                <Username>@{exploredUser.username}</Username>
+              </Link>
+              <Location>Luhansk</Location>
+              <ActivityDescr>
+                <ActivityDescrItem>
+                  Followers
+                  <span>{exploredUser.followers?.length}</span>
+                </ActivityDescrItem>
+                <ActivityDescrItem>
+                  Following
+                  <span>{exploredUser.followings?.length}</span>
+                </ActivityDescrItem>
+              </ActivityDescr>
+            </ProfileInfo>
+          )
         )}
       </ExploreWrapper>
     </MainContainer>

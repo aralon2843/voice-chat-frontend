@@ -2,7 +2,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 interface LoginResponse {
   access_token: string;
-  id: string;
+  user: {
+    _id: string;
+    email: string;
+    username: string;
+    profilePicture: string;
+  };
 }
 
 interface LoginRequest {
