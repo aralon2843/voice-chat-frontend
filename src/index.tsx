@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import App from "./components/App/App";
 import Explore from "./components/Explore/Explore";
 import Login from "./components/Login/Login";
+import Messages from "./components/Messages/Messages";
 import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
 import { setupStore } from "./store/store";
@@ -26,6 +27,9 @@ ReactDOM.render(
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="explore" element={<Explore />} />
+            <Route path="messages/" element={<Messages />}>
+              <Route path=":dialogId" element={<Messages />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

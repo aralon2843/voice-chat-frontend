@@ -66,6 +66,7 @@ export const PostsWrapper = styled.div`
   padding: 20px 10px;
   background-color: ${({ theme }) => theme.colors.grey};
   border-radius: 15px;
+  margin-bottom: 20px;
 `;
 
 export const PostTextAreaWrapper = styled.div`

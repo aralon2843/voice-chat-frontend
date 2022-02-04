@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   min-height: 100vh;
@@ -11,11 +11,16 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div<{ pt: number }>`
-  padding-top: ${({ pt }) => pt + 'px'};
+  padding-top: ${({ pt }) => pt + "px"};
 `;
 
-export const FlexContainer = styled.div<{ justify?: string; align?: string }>`
-  justify-content: ${({ justify }) => (justify ? justify : 'flex-start')};
-  align-items: ${({ align }) => (align ? align : 'stretch')};
+export const FlexContainer = styled.div<{
+  justify?: string;
+  align?: string;
+  direction?: string;
+}>`
   display: flex;
+  justify-content: ${({ justify }) => (justify ? justify : "flex-start")};
+  align-items: ${({ align }) => (align ? align : "stretch")};
+  flex-direction: ${({ direction }) => (direction ? direction : "row")};
 `;
